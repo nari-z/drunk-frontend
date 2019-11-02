@@ -1,0 +1,76 @@
+<template>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+    >
+      <v-list dense>
+        <v-list-item @click="buttonClicked">
+          <v-list-item-action>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item @click="showPostDialog">
+          <v-list-item-action>
+            <v-icon>mdi-cup</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Post</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar
+      app
+      color="brown"
+      dark
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"><v-icon>mdi-menu</v-icon></v-app-bar-nav-icon>
+      <v-toolbar-title>drunk!</v-toolbar-title>
+    </v-app-bar>
+
+    <v-content>
+      <ImageCardBoard></ImageCardBoard>
+    </v-content>
+
+    <PostDialog v-bind:formVisible="visiblePostDialog">
+    </PostDialog>
+
+    <v-footer
+      color="brown"
+      app
+    >
+      <span class="white--text">&copy; 2019 drunk</span>
+    </v-footer>
+  </v-app>
+</template>
+
+<script lang="ts">
+    import { Component, Vue } from 'vue-property-decorator';
+    import ImageCardBoard from "@/components/ImageCardBoard.vue";
+    import PostDialog from "@/components/PostDialog.vue"
+    import axios from "axios";
+
+    @Component({
+      components: {
+        ImageCardBoard,
+        PostDialog,
+      },
+    })
+    export default class App extends Vue {
+      drawer: boolean = false;
+      visiblePostDialog: boolean = false;
+
+      public buttonClicked() {
+      }
+
+      public showPostDialog() {
+        console.log("showPostDialog");
+        this.visiblePostDialog = true;
+      }
+    }
+</script>
