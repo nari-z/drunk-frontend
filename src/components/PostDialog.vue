@@ -47,25 +47,22 @@
 
         liquorName: string = "";
 
-        uploadFile = null;
+        uploadFile: Blob | string = "";
 
-        private selectedFile(event) {
+        private selectedFile(event:any) {
             this.uploadFile = event[0];
         }
         private postLiquor() {
             // set params
             var formData = new FormData();
-            formData.append("image", this.uploadFile);
-            formData.append("name", this.liquorName);
-            console.log(this.liquorName);
+            console.log(typeof this.uploadFile);
             // send
             axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor', 
                             formData
                         ).then( response => {
-                            console.log('Success!')
-                            console.log({response})
+                          // TODO: レスポンスに応じて対応
                         }).catch(error => {
-                            console.log({error})
+                          // TODO: エラーに応じて対応
                         });
         }
     }

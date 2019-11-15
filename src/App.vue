@@ -69,7 +69,6 @@
       }
 
       public showPostDialog() {
-        console.log("showPostDialog");
         this.visiblePostDialog = true;
       }
     }

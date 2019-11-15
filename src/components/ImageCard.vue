@@ -53,9 +53,6 @@
             height: undefined,
         }),
         mounted: function() {
-            console.log("image card mouted.");
-            console.log(this.$props);
-            
         }
     }
 </script>
