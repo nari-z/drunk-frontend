@@ -43,18 +43,18 @@
     @Component
     export default class PostDialog extends Vue {
         @Prop({ default: false })
-        formVisible!: boolean;
+        private formVisible!: boolean;
 
-        liquorName: string = "";
+        private liquorName: string = "";
 
-        uploadFile: Blob | string = "";
+        private uploadFile: Blob | string = "";
 
-        private selectedFile(event:any) {
+        private selectedFile(event: any) {
             this.uploadFile = event[0];
         }
         private postLiquor() {
           // set params
-          var formData = new FormData();
+          const formData = new FormData();
           formData.append("image", this.uploadFile);
           formData.append("name", this.liquorName);
           this.$emit("SelectedLiquor", formData);
