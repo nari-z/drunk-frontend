@@ -28,8 +28,8 @@
         </v-card-text>
         <v-card-actions>
           <div class="flex-grow-1"></div>
-          <v-btn color="blue darken-1" text @click="formVisible = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="postLiquor" type="submit">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="formVisible = false">Cancel</v-btn>
+          <v-btn color="blue darken-1" text @click="postLiquor" type="submit">Post</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
