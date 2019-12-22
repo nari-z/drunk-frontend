@@ -78,6 +78,7 @@
 
       private ReseiveSelectedLiquor(postParams: any) {
         // send
+        // TODO: API関連の処理を集約
         axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor', 
                       postParams
                     ).then( response => {

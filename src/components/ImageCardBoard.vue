@@ -35,6 +35,7 @@
 
       public ViewUpdate() {
         // TODO: change to web socket.
+        // TODO: API関連の処理を集約
         return axios.get(this.$data["base_url"] + '/liquor')
         .then((res) => {
           for(var item of res.data) {
