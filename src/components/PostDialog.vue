@@ -38,16 +38,16 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
-    import axios from "axios";
+    import axios from 'axios';
 
     @Component
     export default class PostDialog extends Vue {
         @Prop({ default: false })
         private formVisible!: boolean;
 
-        private liquorName: string = "";
+        private liquorName: string = '';
 
-        private uploadFile: Blob | string = "";
+        private uploadFile: Blob | string = '';
 
         private selectedFile(event: any) {
             this.uploadFile = event[0];
@@ -55,9 +55,9 @@
         private postLiquor() {
           // set params
           const formData = new FormData();
-          formData.append("image", this.uploadFile);
-          formData.append("name", this.liquorName);
-          this.$emit("SelectedLiquor", formData);
+          formData.append('image', this.uploadFile);
+          formData.append('name', this.liquorName);
+          this.$emit('SelectedLiquor', formData);
         }
     }
 </script>

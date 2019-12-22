@@ -15,8 +15,8 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import ImageCard from "@/components/ImageCard.vue";
-    import axios from "axios";
+    import ImageCard from '@/components/ImageCard.vue';
+    import axios from 'axios';
 
     @Component({
       components: {
@@ -25,23 +25,23 @@
     })
 
     export default class ImageCardBoard extends Vue {
-      model:string = "ss";
-      base_url:string = process.env.VUE_APP_API_URL_BASE;
-      items:object = {};
+      // model: string = "ss";
+      private baseURL: string = process.env.VUE_APP_API_URL_BASE;
+      private items: object = {};
 
-      public mounted(){
+      public mounted() {
           this.ViewUpdate();
       }
 
       public ViewUpdate() {
         // TODO: change to web socket.
         // TODO: API関連の処理を集約
-        return axios.get(this.$data["base_url"] + '/liquor')
+        return axios.get(this.$data.baseURL + '/liquor')
         .then((res) => {
-          for(var item of res.data) {
-            item["ImageFilePath"] = this.$data["base_url"] + "/" + item["ImageFilePath"];
+          for (const item of res.data) {
+            item.ImageFilePath = this.$data.baseURL + '/' + item.ImageFilePath;
           }
-          this.$data["items"] = res.data;
+          this.$data.items = res.data;
         });
       }
     }

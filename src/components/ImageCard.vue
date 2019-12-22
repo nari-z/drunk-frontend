@@ -52,7 +52,5 @@
             width: 344,
             height: undefined,
         }),
-        mounted: function() {
-        }
-    }
+    };
 </script>

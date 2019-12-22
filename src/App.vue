@@ -5,7 +5,7 @@
       app
     >
       <v-list dense>
-        <v-list-item @click="buttonClicked">
+        <v-list-item @click="transitHome">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -51,9 +51,9 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import ImageCardBoard from "@/components/ImageCardBoard.vue";
-    import PostDialog from "@/components/PostDialog.vue"
-    import axios from "axios";
+    import ImageCardBoard from '@/components/ImageCardBoard.vue';
+    import PostDialog from '@/components/PostDialog.vue';
+    import axios from 'axios';
 
     @Component({
       components: {
@@ -62,14 +62,17 @@
       },
     })
     export default class App extends Vue {
-      drawer: boolean = false;
-      visiblePostDialog: boolean = false;
+      public $refs!: {
+        ImageCardBoard: ImageCardBoard,
+      };
 
-      $refs!: {
-          ImageCardBoard: ImageCardBoard
-      }
+      private drawer: boolean = false;
+      private visiblePostDialog: boolean = false;
 
-      public buttonClicked() {
+
+      public transitHome() {
+        this.visiblePostDialog = false;
+        this.drawer = false;
       }
 
       public showPostDialog() {
@@ -79,8 +82,8 @@
       private ReseiveSelectedLiquor(postParams: any) {
         // send
         // TODO: API関連の処理を集約
-        axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor', 
-                      postParams
+        axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor',
+                      postParams,
                     ).then( response => {
                       // TODO: レスポンスに応じて対応
                     }).catch(error => {
@@ -88,8 +91,7 @@
                     });
 
         // update screen.
-        this.visiblePostDialog = false;
-        this.drawer = false;
+        this.transitHome();
         this.$refs.ImageCardBoard.ViewUpdate();
       }
     }
