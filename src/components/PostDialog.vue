@@ -57,16 +57,7 @@
           var formData = new FormData();
           formData.append("image", this.uploadFile);
           formData.append("name", this.liquorName);
-          // send
-          // TODO: Emitを使って親コンポーネントに送信してもらう（通信処理を共通化する）
-          //       FormData（というよりObject？）をEmitで送信できていない。stringなら成功した。
-          axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor', 
-                          formData
-                      ).then( response => {
-                        // TODO: レスポンスに応じて対応
-                      }).catch(error => {
-                        // TODO: エラーに応じて対応
-                      });
+          this.$emit("SelectedLiquor", formData);
         }
     }
 </script>

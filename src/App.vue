@@ -34,10 +34,10 @@
     </v-app-bar>
 
     <v-content>
-      <ImageCardBoard></ImageCardBoard>
+      <ImageCardBoard ref="ImageCardBoard"></ImageCardBoard>
     </v-content>
 
-    <PostDialog v-bind:formVisible="visiblePostDialog">
+    <PostDialog v-bind:formVisible="visiblePostDialog" v-on:SelectedLiquor="ReseiveSelectedLiquor($event)">
     </PostDialog>
 
     <v-footer
@@ -65,11 +65,31 @@
       drawer: boolean = false;
       visiblePostDialog: boolean = false;
 
+      $refs!: {
+          ImageCardBoard: ImageCardBoard
+      }
+
       public buttonClicked() {
       }
 
       public showPostDialog() {
         this.visiblePostDialog = true;
+      }
+
+      private ReseiveSelectedLiquor(postParams: any) {
+        // send
+        axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor', 
+                      postParams
+                    ).then( response => {
+                      // TODO: レスポンスに応じて対応
+                    }).catch(error => {
+                      // TODO: エラーに応じて対応
+                    });
+
+        // update screen.
+        this.visiblePostDialog = false;
+        this.drawer = false;
+        this.$refs.ImageCardBoard.ViewUpdate();
       }
     }
 </script>

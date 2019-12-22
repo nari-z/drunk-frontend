@@ -30,10 +30,10 @@
       items:object = {};
 
       public mounted(){
-          this.viewUpdate();
+          this.ViewUpdate();
       }
 
-      public viewUpdate() {
+      public ViewUpdate() {
         // TODO: change to web socket.
         return axios.get(this.$data["base_url"] + '/liquor')
         .then((res) => {
