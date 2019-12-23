@@ -50,49 +50,49 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from 'vue-property-decorator';
-    import ImageCardBoard from '@/components/ImageCardBoard.vue';
-    import PostDialog from '@/components/PostDialog.vue';
-    import axios from 'axios';
+  import { Component, Vue } from 'vue-property-decorator';
+  import ImageCardBoard from '@/components/ImageCardBoard.vue';
+  import PostDialog from '@/components/PostDialog.vue';
+  import axios from 'axios';
 
-    @Component({
-      components: {
-        ImageCardBoard,
-        PostDialog,
-      },
-    })
-    export default class App extends Vue {
-      public $refs!: {
-        ImageCardBoard: ImageCardBoard,
-      };
+  @Component({
+    components: {
+      ImageCardBoard,
+      PostDialog,
+    },
+  })
+  export default class App extends Vue {
+    public $refs!: {
+      ImageCardBoard: ImageCardBoard,
+    };
 
-      private drawer: boolean = false;
-      private visiblePostDialog: boolean = false;
+    private drawer: boolean = false;
+    private visiblePostDialog: boolean = false;
 
 
-      public transitHome() {
-        this.visiblePostDialog = false;
-        this.drawer = false;
-      }
-
-      public showPostDialog() {
-        this.visiblePostDialog = true;
-      }
-
-      private ReseiveSelectedLiquor(postParams: any) {
-        // send
-        // TODO: API関連の処理を集約
-        axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor',
-                      postParams,
-                    ).then( response => {
-                      // TODO: レスポンスに応じて対応
-                    }).catch(error => {
-                      // TODO: エラーに応じて対応
-                    });
-
-        // update screen.
-        this.transitHome();
-        this.$refs.ImageCardBoard.ViewUpdate();
-      }
+    public transitHome() {
+      this.visiblePostDialog = false;
+      this.drawer = false;
     }
+
+    public showPostDialog() {
+      this.visiblePostDialog = true;
+    }
+
+    private ReseiveSelectedLiquor(postParams: any) {
+      // send
+      // TODO: API関連の処理を集約
+      axios.post(process.env.VUE_APP_API_URL_BASE + '/liquor',
+                    postParams,
+                  ).then( response => {
+                    // TODO: レスポンスに応じて対応
+                  }).catch(error => {
+                    // TODO: エラーに応じて対応
+                  });
+
+      // update screen.
+      this.transitHome();
+      this.$refs.ImageCardBoard.ViewUpdate();
+    }
+  }
 </script>
